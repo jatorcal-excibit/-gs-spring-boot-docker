@@ -19,11 +19,38 @@
 
     <properties>
         <docker.image.prefix>springio</docker.image.prefix>
-        <java.version>1.8</java.version>
+	<azure.containerRegistry>excibitregistry</azure.containerRegistry>
+	<docker.image.prefix>${azure.containerRegistry}.azurecr.io</docker.image.prefix>
+	<maven.build.timestamp.format>yyyyMMddHHmmssSSS</maven.build.timestamp.format>
     </properties>
 
     <build>
-        <plugins>
+	<plugins>
+	    <plugin>
+		   <groupId>com.spotify</groupId>
+		   <artifactId>docker-maven-plugin</artifactId>
+		   <version>0.4.11</version>
+			<dependencies>
+		            <dependency>
+		                <groupId>javax.activation</groupId>
+		                <artifactId>activation</artifactId>
+		                <version>1.1.1</version>
+		            </dependency>
+		        </dependencies>
+		   <configuration>
+		      <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+		      <registryUrl>https://${docker.image.prefix}</registryUrl>
+		      <serverId>${azure.containerRegistry}</serverId>
+		      <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
+		      <resources>
+			 <resource>
+			    <targetPath>/</targetPath>
+			    <directory>${project.build.directory}</directory>
+			    <include>${project.build.finalName}.jar</include>
+			 </resource>
+		      </resources>
+		   </configuration>
+		</plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -41,6 +68,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
 </project>
