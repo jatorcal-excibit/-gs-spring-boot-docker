@@ -63,6 +63,8 @@
 		        </dependencies>
 		   <configuration>
 		      <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+      <username>excibitregistry</username>
+      <password>M+Svvph5/3XQb0oCwkjwS+U5Yj2wnAPL</password>     
 		      <registryUrl>https://${docker.image.prefix}</registryUrl>
 		      <serverId>${azure.containerRegistry}</serverId>
 		      <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
