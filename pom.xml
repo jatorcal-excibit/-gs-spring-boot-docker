@@ -19,7 +19,7 @@
 
     <properties>
         <docker.image.prefix>springio</docker.image.prefix>
-	<azure.containerRegistry>excibitregistry</azure.containerRegistry>
+	<azure.containerRegistry>excibitcontainer</azure.containerRegistry>
 	<docker.image.prefix>${azure.containerRegistry}.azurecr.io</docker.image.prefix>
 	<maven.build.timestamp.format>yyyyMMddHHmmssSSS</maven.build.timestamp.format>
     </properties>
