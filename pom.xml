@@ -34,7 +34,7 @@
 		      <authentication>
 			 <serverId>azure-auth</serverId>
 		      </authentication>
-		      <resourceGroup>wingtiptoysresources</resourceGroup>
+		      <resourceGroup>excibitresources</resourceGroup>
 		      <appName>maven-linux-app-${maven.build.timestamp}</appName>
 		      <region>westus</region>
 		      <containerSettings>
