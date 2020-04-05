@@ -26,6 +26,30 @@
 
     <build>
 	<plugins>
+		<plugin>
+		   <groupId>com.microsoft.azure</groupId>
+		   <artifactId>azure-webapp-maven-plugin</artifactId>
+		   <version>1.9.1</version>
+		   <configuration>
+		      <authentication>
+			 <serverId>azure-auth</serverId>
+		      </authentication>
+		      <resourceGroup>wingtiptoysresources</resourceGroup>
+		      <appName>maven-linux-app-${maven.build.timestamp}</appName>
+		      <region>westus</region>
+		      <containerSettings>
+			 <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+			 <registryUrl>https://${docker.image.prefix}</registryUrl>
+			 <serverId>${azure.containerRegistry}</serverId>
+		      </containerSettings>
+		      <appSettings>
+			 <property>
+			    <name>PORT</name>
+			    <value>8080</value>
+			 </property>
+		      </appSettings>
+		   </configuration>
+		</plugin>
 	    <plugin>
 		   <groupId>com.spotify</groupId>
 		   <artifactId>docker-maven-plugin</artifactId>
